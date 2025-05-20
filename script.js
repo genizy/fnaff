@@ -31,40 +31,22 @@ const selection = document.getElementById("selection");
 const options = document.querySelector('.launcher-options');
 const musicIcon = document.querySelector('.music');
 const soundIcon = document.querySelector('.sound');
-const steamlinks = [
-    'steam://run/319510',
-    'steam://run/332800',
-    'steam://run/354140',
-    'steam://run/388090',
-    "javascript:alert('Sorry! We have not added a way to launch FNAF World yet...');",
-    'steam://run/506610',
-    'steam://run/738060',
-    'steam://run/871720',
-    'steam://run/732690',
-    'steam://run/747660',
-    'steam://run/2287520'
-]
+
 const htmllinks = [
-    'https://irv77.github.io/hd_fnaf/1/',
-    'https://irv77.github.io/hd_fnaf/2/',
-    'https://irv77.github.io/hd_fnaf/3/',
-    'https://irv77.github.io/hd_fnaf/4/',
-    'https://irv77.github.io/hd_fnaf/w/',
-    "javascript:alert('Sorry! We have not added Sister Location to web browser yet...');",
-    'https://irv77.github.io/hd_fnaf/ps/',
-    'https://irv77.github.io/hd_fnaf/ucn/',
-    "javascript:alert('Sorry! There is not Help Wanted 1 in web browser...');",
-    "javascript:alert('Sorry! There is not Security Breach in web browser...');",
-    "javascript:alert('Sorry! There is not Help Wanted 2 in web browser...');"
+    'javascript:window.runFnaf("1")',
+    'javascript:window.runFnaf("2")',
+    'javascript:window.runFnaf("3")',
+    'javascript:window.runFnaf("4")',
+    'javascript:window.runFnaf("sl")',
+    'javascript:window.runFnaf("world")',
+    'javascript:window.runFnaf("ps")',
+    'javascript:window.runFnaf("ucn")'
 ]
 
-if (!launcherSHO) { launcherSHO = 'steam'; localStorage.setItem(launcherKey, launcherSHO); }
+if (!launcherSHO) { localStorage.setItem(launcherKey, 'html'); }
 if (!playMusic) { playMusic = 'true'; localStorage.setItem(musicKey, playMusic); }
 if (!playSound) { playSound = 'true'; localStorage.setItem(soundKey, playSound); }
 
-if (launcherSHO === 'off') { options.src = 'images/icons/launcher-off.svg'; }
-if (launcherSHO === 'html') { options.src = 'images/icons/launcher-html.svg'; }
-if (launcherSHO === 'steam') { options.src = 'images/icons/launcher-steam.svg'; }
 if (playMusic === 'true') { musicIcon.src = 'images/icons/music.svg'; }
 if (playMusic === 'false') { musicIcon.src = 'images/icons/music-off.svg'; }
 if (playSound === 'true') { soundIcon.src = 'images/icons/sound.svg'; }
@@ -100,7 +82,6 @@ function deactivator() {
         left = false;
         right = true;
         if (launcherSHO === 'html') { deactivate = false; }
-        else if (launcherSHO === 'off') { deactivate = false; }
     }
     if (deactivate === false) { if (playSound === 'true') { back.currentTime = 0; back.play(); } }
 }
@@ -131,10 +112,7 @@ function playButtonHover(cancel) {
 }
 
 function launcherOptions() {
-    if (launcherSHO === 'steam') { launcherSHO = 'off'; options.src = 'images/icons/launcher-off.svg'; }
-    else if (launcherSHO === 'off') { launcherSHO = 'html'; options.src = 'images/icons/launcher-html.svg'; }
-    else if (launcherSHO === 'html') { launcherSHO = 'steam'; options.src = 'images/icons/launcher-steam.svg'; }
-    localStorage.setItem(launcherKey, launcherSHO)
+    localStorage.setItem(launcherKey, 'html')
     changeGameSelected(currentIndex);
 }
 
